@@ -1,5 +1,3 @@
-local utils = require("utils")
-
 require('compe').setup {
   enabled = true;
   autocomplete = true;
@@ -21,12 +19,5 @@ require('compe').setup {
     nvim_lsp = true;
     nvim_lua = false;
     vsnip = true;
-    snippets_nvim = false;
   };
 }
-
-local options = { expr = true }
-
-utils.map('i', '<C-Space>', 'compe#complete()',      options)
-utils.map('i', '<C-e>',     "compe#close('<C-e>')",  options)
-utils.map('i', '<CR>',      "compe#confirm('<CR>')", options)

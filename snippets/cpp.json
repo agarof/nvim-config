@@ -9,10 +9,20 @@
     ],
     "description": "Code snippet for virtual member"
   },
-  "method": {
-    "prefix": "method",
+  "proto": {
+    "prefix": "proto",
     "body": ["auto $1($2) -> $3;"],
     "description": "Code snippet for virtual member"
+  },
+  "method": {
+    "prefix": "method",
+    "body": [
+        "auto $1::$2($3) -> $4",
+        "{",
+        "\t$5",
+        "}"
+    ],
+    "description": "Code snippet for member function"
   },
   "class": {
     "prefix": "class",
