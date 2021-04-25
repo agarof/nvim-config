@@ -1,8 +1,6 @@
 "Load lua config
 luafile $HOME/.config/nvim/lua/config.lua
 
-set completeopt+=preview
-
 "Use syntax-based folding
 set foldmethod=syntax
 set foldlevelstart=99
