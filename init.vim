@@ -38,6 +38,7 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 syntax enable
+set noshowmode
 
 "Configure airline
 let g:airline#extensions#tabline#tab_min_count = 2

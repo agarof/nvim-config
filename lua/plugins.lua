@@ -7,7 +7,7 @@ return require('packer').startup(function (use)
   use 'kjwon15/vim-transparent'
 
   -- StatusLine
-  use 'vim-airline/vim-airline'
+  use 'hoob3rt/lualine.nvim'
 
   use 'neovim/nvim-lspconfig'
 
