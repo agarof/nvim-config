@@ -8,7 +8,7 @@ local highlight = function (group, color)
   vim.cmd(command)
 end
 
-vim.cmd('set termguicolors')
+vim.o.termguicolors = true
 vim.cmd('colorscheme codedark')
 
 highlight('VertSplit', { bg = 'None' })

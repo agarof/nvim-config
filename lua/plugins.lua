@@ -2,7 +2,7 @@ return require('packer').startup(function (use)
   use 'wbthomason/packer.nvim'
 
   -- Colorschemes
-  use 'Mofiqul/vim-code-dark'
+  use 'tomasiser/vim-code-dark'
   use 'doums/darcula'
   use 'kjwon15/vim-transparent'
 
@@ -27,4 +27,10 @@ return require('packer').startup(function (use)
       'nvim-telescope/telescope.nvim',
       requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
+
+  -- Lsp diagnostics highlights
+  use 'folke/lsp-colors.nvim'
+
+  -- Startup time benchmark
+  use 'tweekmonster/startuptime.vim'
 end)

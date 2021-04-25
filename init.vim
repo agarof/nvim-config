@@ -39,11 +39,3 @@ set shiftwidth=4
 set expandtab
 syntax enable
 set noshowmode
-
-"Configure airline
-let g:airline#extensions#tabline#tab_min_count = 2
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_skip_empty_sections = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='codedark'

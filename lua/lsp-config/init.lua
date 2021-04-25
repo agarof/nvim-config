@@ -29,13 +29,25 @@ end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = false,
+    underline = true,
+    update_in_insert = false,
     virtual_text = {
-      prefix = "->"
+      prefix = ''
     },
-    update_in_insert = true
   }
 )
+
+vim.fn.sign_define('LspDiagnosticsSignError',
+    { text = '', texthl = 'LspDiagnosticsSignError' })
+
+vim.fn.sign_define('LspDiagnosticsSignWarning',
+    { text = '', texthl = 'LspDiagnosticsSignWarning' })
+
+vim.fn.sign_define('LspDiagnosticsSignInformation',
+    { text = '', texthl = 'LspDiagnosticsSignInformation' })
+
+vim.fn.sign_define('LspDiagnosticsSignHint',
+    { text = '', texthl = 'LspDiagnosticsSignHint' })
 
 local servers = {
   require('lsp-config/rust-analyzer'),
@@ -47,6 +59,7 @@ local servers = {
   { name = 'hls' },
   { name = 'vuels' },
   { name = 'tsserver' },
+  { name = 'bashls' },
 }
 
 for _, server in ipairs(servers) do
