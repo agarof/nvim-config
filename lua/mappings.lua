@@ -18,3 +18,4 @@ utils.map('n', '<C-c>', ':tabclose<CR>')
 
 -- Allow window movement from active terminal
 utils.map('t', '<C-w>', '<C-\\><C-n><C-w>')
+utils.map('t', 'hn', '<C-\\><C-n>')

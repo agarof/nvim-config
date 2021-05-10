@@ -38,3 +38,11 @@ set shiftwidth=4
 set expandtab
 syntax enable
 set noshowmode
+
+augroup neovim_terminal
+  autocmd!
+  " Enter Terminal-mode (insert) automatically
+  autocmd TermOpen * startinsert
+  " Disables number lines on terminal buffers
+  autocmd TermOpen * :set nonumber norelativenumber
+augroup END
