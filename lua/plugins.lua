@@ -2,9 +2,7 @@ return require('packer').startup(function (use)
   use 'wbthomason/packer.nvim'
 
   -- Colorschemes
-  use 'tomasiser/vim-code-dark'
-  use 'doums/darcula'
-  use 'kjwon15/vim-transparent'
+  use 'folke/tokyonight.nvim'
 
   -- StatusLine
   use { 'hoob3rt/lualine.nvim', config = require('config.lualine') }

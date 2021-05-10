@@ -1,18 +1,18 @@
 return function ()
   local colors = {
-    white    = '#D4D4D4',
-    grey     = '#3C3C3C',
-    darkgrey = '#262626',
-    blue     = '#569CD6',
-    yellow   = '#D7BA7D',
-    green    = '#608B4E',
+    white    = '#c0caf5',
+    grey     = '#3B4261',
+    darkgrey = '#1F2335',
+    blue     = '#7aa2f7',
+    yellow   = '#e0af68',
+    green    = '#9ece6a',
   }
 
   local mode_highlight = function (highlight)
     return {
-      a = { bg = highlight,       fg = colors.grey, gui = 'bold' },
-      b = { bg = colors.grey,     fg = highlight                 },
-      c = { bg = colors.darkgrey, fg = colors.white              },
+      a = { bg = highlight,       fg = colors.darkgrey, gui = 'bold' },
+      b = { bg = colors.grey,     fg = highlight                     },
+      c = { bg = colors.darkgrey, fg = colors.white                  },
     }
   end
 
