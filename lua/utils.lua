@@ -16,5 +16,15 @@ return {
     if opts then options = vim.tbl_extend('force', options, opts) end
 
     vim.api.nvim_buf_set_keymap(buffer, mode, keys, action, options)
+  end,
+
+  highlight = function (group, color)
+    local command = 'hi ' .. group .. ' '
+      .. 'gui='   .. (color.style or 'None') .. ' '
+      .. 'guifg=' .. (color.fg    or 'None') .. ' '
+      .. 'guibg=' .. (color.bg    or 'None') .. ' '
+      .. 'guisp=' .. (color.sp    or 'None') .. ' '
+
+    vim.cmd(command)
   end
 }
