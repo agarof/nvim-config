@@ -7,5 +7,4 @@ return function ()
   map('n', '<C-f>', ':Telescope find_files<CR>')
   map('n', '<C-g>', ':Telescope live_grep<CR>')
   map('n', '<C-s>', ':Telescope lsp_references<CR>')
-  map('n', '<C-d>', ':Telescope lsp_document_diagnostics<CR>')
 end

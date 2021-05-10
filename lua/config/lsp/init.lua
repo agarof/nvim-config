@@ -8,15 +8,14 @@ return function ()
   local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) utils.buf_map(bufnr, ...) end
 
-    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-    -- buf_set_keymap('n', 'gi',       '<cmd>lua vim.lsp.buf.implementation()<CR>')
+    buf_set_keymap('n', 'gd',        '<cmd>lua vim.lsp.buf.declaration()<CR>')
+    buf_set_keymap('n', 'gi',        '<cmd>lua vim.lsp.buf.implementation()<CR>')
     buf_set_keymap('n', 'K',         '<cmd>lua vim.lsp.buf.hover()<CR>')
     buf_set_keymap('n', '<C-k>',     '<cmd>lua vim.lsp.buf.signature_help()<CR>')
     buf_set_keymap('n', '1gD',       '<cmd>lua vim.lsp.buf.type_definition()<CR>')
     buf_set_keymap('n', 'gr',        '<cmd>lua vim.lsp.buf.references()<CR>')
     buf_set_keymap('n', 'g0',        '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
     buf_set_keymap('n', 'gW',        '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-    buf_set_keymap('n', 'gi',        '<cmd>lua vim.lsp.buf.declaration()<CR>')
     buf_set_keymap('n', 'gk',        '<cmd>lua vim.lsp.buf.code_action()<CR>')
     buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
     buf_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
@@ -40,7 +39,6 @@ return function ()
     { name = 'bashls' },
   }
 
-
   capabilities.textDocument.completion.completionItem.snippetSupport = true
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -52,6 +50,8 @@ return function ()
       },
     }
   )
+
+  vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
 
   vim.fn.sign_define('LspDiagnosticsSignError',
     { text = '', texthl = 'LspDiagnosticsSignError' })

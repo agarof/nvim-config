@@ -9,7 +9,16 @@ return require('packer').startup(function (use)
   -- StatusLine
   use { 'hoob3rt/lualine.nvim', config = require('config.lualine') }
 
-  use { 'neovim/nvim-lspconfig', config = require('config.lsp') }
+  use {
+    'neovim/nvim-lspconfig',
+    config = require('config.lsp'),
+    requires = {
+      {
+        'RishabhRD/nvim-lsputils',
+        requires = 'RishabhRD/popfix',
+      },
+    },
+  }
 
   -- Treesitter
   use {
@@ -41,6 +50,13 @@ return require('packer').startup(function (use)
 
   -- Icons
   use 'kyazdani42/nvim-web-devicons'
+
+  -- Lsp Diagnostics window
+  use {
+    'folke/lsp-trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = require('config.lsp-trouble'),
+  }
 
   -- Lsp diagnostics highlights
   use 'folke/lsp-colors.nvim'

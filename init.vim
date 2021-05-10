@@ -29,6 +29,7 @@ set timeoutlen=200
 "Use the clipboard as default register
 set clipboard=unnamedplus
 set completeopt=menuone,noselect
+set shortmess+=c
 
 set nocp
 filetype plugin indent on
