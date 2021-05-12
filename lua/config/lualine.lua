@@ -38,8 +38,13 @@ return function ()
 
   local filename = {
     'filename',
-    full_path = true,
-    shorten = true,
+    file_status = true,
+    path = 1,
+  }
+
+  local filetype = {
+    'filetype',
+    colored = false,
   }
 
   require('lualine').setup {
@@ -48,7 +53,7 @@ return function ()
       lualine_b = { 'branch', diagnostics },
       lualine_c = { spacer, filename },
       lualine_x = { 'encoding', 'fileformat' },
-      lualine_y = { 'filetype' },
+      lualine_y = { filetype },
       lualine_z = { 'location' }
     },
     inactive_sections = {
