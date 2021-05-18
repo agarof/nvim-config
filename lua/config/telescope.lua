@@ -1,8 +1,16 @@
 return function ()
   local map = require("utils").map
   local telescope = require('telescope')
+  local actions = require('telescope.actions')
 
   telescope.setup {
+    defaults = {
+      mappings = {
+        n = {
+          ['q'] = actions.close,
+        }
+      }
+    },
     extensions = {
       fzf = {
         override_generic_sorter = true,
