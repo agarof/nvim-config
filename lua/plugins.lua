@@ -63,5 +63,7 @@ require('packer').startup(function (use)
   -- Startup time benchmark
   use 'tweekmonster/startuptime.vim'
 
+  use { 'steelsojka/pears.nvim', config = require('config.pears') }
+
   use { 'folke/zen-mode.nvim', config = require('config.zen-mode') }
 end)
