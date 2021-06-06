@@ -26,6 +26,8 @@ return function ()
         vim.cmd('autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()')
       end
 
+      require('lsp_signature').on_attach({ hint_enable = false })
+
       if server_on_attach then
         server_on_attach(client, bufnr)
       end

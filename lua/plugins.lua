@@ -1,4 +1,4 @@
-return require('packer').startup(function (use)
+require('packer').startup(function (use)
   use 'wbthomason/packer.nvim'
 
   -- Colorschemes
@@ -15,6 +15,7 @@ return require('packer').startup(function (use)
         'RishabhRD/nvim-lsputils',
         requires = 'RishabhRD/popfix',
       },
+      'ray-x/lsp_signature.nvim',
     },
   }
 
