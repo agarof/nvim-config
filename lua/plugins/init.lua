@@ -5,11 +5,11 @@ require('packer').startup(function (use)
   use 'folke/tokyonight.nvim'
 
   -- StatusLine
-  use { 'hoob3rt/lualine.nvim', config = require('config.lualine') }
+  use { 'hoob3rt/lualine.nvim', config = require('plugins.lualine') }
 
   use {
     'neovim/nvim-lspconfig',
-    config = require('config.lsp'),
+    config = require('plugins.lspconfig'),
     requires = {
       {
         'RishabhRD/nvim-lsputils',
@@ -24,17 +24,17 @@ require('packer').startup(function (use)
     {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
-      config = require('config.treesitter'),
+      config = require('plugins.treesitter'),
     },
     'nvim-treesitter/playground'
   }
 
   -- Autocompletion
-  use { 'hrsh7th/nvim-compe', config = require('config.compe') }
+  use { 'hrsh7th/nvim-compe', config = require('plugins.compe') }
 
-  use { 'hrsh7th/vim-vsnip', config = require('config.vsnip') }
+  use { 'hrsh7th/vim-vsnip', config = require('plugins.vsnip') }
 
-  use { 'rhysd/git-messenger.vim', config = require('config.git-messenger') }
+  use { 'rhysd/git-messenger.vim', config = require('plugins.git-messenger') }
 
   -- Finder
   use {
@@ -44,7 +44,7 @@ require('packer').startup(function (use)
       { 'nvim-lua/plenary.nvim' },
       { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
     },
-    config = require('config.telescope')
+    config = require('plugins.telescope')
   }
 
   -- Icons
@@ -54,7 +54,7 @@ require('packer').startup(function (use)
   use {
     'folke/lsp-trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
-    config = require('config.lsp-trouble'),
+    config = require('plugins.lsp-trouble'),
   }
 
   -- Lsp diagnostics highlights
@@ -63,7 +63,7 @@ require('packer').startup(function (use)
   -- Startup time benchmark
   use 'tweekmonster/startuptime.vim'
 
-  use { 'steelsojka/pears.nvim', config = require('config.pears') }
+  use { 'steelsojka/pears.nvim', config = require('plugins.pears') }
 
-  use { 'folke/zen-mode.nvim', config = require('config.zen-mode') }
+  use { 'folke/zen-mode.nvim', config = require('plugins.zen-mode') }
 end)

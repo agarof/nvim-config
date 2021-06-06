@@ -35,9 +35,9 @@ return function ()
   end
 
   local servers = {
-    require('config.lsp.rust-analyzer'),
-    require('config.lsp.sumneko_lua'),
-    require('config.lsp.pyright'),
+    require('plugins.lspconfig.rust-analyzer'),
+    require('plugins.lspconfig.sumneko_lua'),
+    require('plugins.lspconfig.pyright'),
     { name = 'hls' },
     { name = 'clangd' },
     { name = 'cmake' },
