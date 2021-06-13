@@ -31,4 +31,8 @@ return function ()
   map('i', '<CR>',      'compe#confirm("<CR>")', options)
   map('i', '<Tab>',     'pumvisible() ? "<C-n>" : "<Tab>"',   options)
   map('i', '<S-Tab>',   'pumvisible() ? "<C-p>" : "<S-Tab>"', options)
+
+  vim.opt.completeopt = { 'menuone', 'noselect' }
+  -- Remove compe status display
+  vim.opt.shortmess:append('c')
 end

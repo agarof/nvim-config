@@ -22,16 +22,10 @@ opt.timeoutlen = 200
 -- Use the clipboard as default register
 opt.clipboard = 'unnamedplus'
 
-opt.completeopt = { 'menuone', 'noselect' }
--- Remove compe status display
-opt.shortmess:append('c')
-
 -- Set indent length
 opt.tabstop = 4
 opt.shiftwidth = 0
 opt.expandtab = true
-
-opt.showmode = false
 
 -- Disable duplicate mode display
 opt.showmode = false
