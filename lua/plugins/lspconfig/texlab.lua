@@ -10,10 +10,8 @@ return {
           '--keep-logs',
           '--keep-intermediates',
         },
+        onSave = true,
       },
     },
   },
-  on_attach = function ()
-    vim.cmd('autocmd BufWritePost *.tex TexlabBuild')
-  end,
 }
