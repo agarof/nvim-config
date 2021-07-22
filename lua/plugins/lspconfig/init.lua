@@ -1,86 +1,108 @@
-return function ()
-  local lsp = require('lspconfig')
+local format_on_save = true
 
-  local utils = require('utils')
+return {
+  config = function ()
+    local lsp = require('lspconfig')
+    local utils = require('utils')
+    local lsp_signature = require('lsp_signature')
 
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  local on_attach = function (client, bufnr)
-    local function buf_set_keymap(...) utils.buf_map(bufnr, ...) end
+    local on_attach = function (client, bufnr)
+      local function buf_set_keymap(...) utils.buf_map(bufnr, ...) end
 
-    buf_set_keymap('n', 'gd',        '<cmd>lua vim.lsp.buf.declaration()<CR>')
-    buf_set_keymap('n', 'gi',        '<cmd>lua vim.lsp.buf.implementation()<CR>')
-    buf_set_keymap('n', 'K',         '<cmd>lua vim.lsp.buf.hover()<CR>')
-    buf_set_keymap('n', '<C-k>',     '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-    buf_set_keymap('n', '1gD',       '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-    buf_set_keymap('n', 'gr',        '<cmd>lua vim.lsp.buf.references()<CR>')
-    buf_set_keymap('n', 'g0',        '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-    buf_set_keymap('n', 'gW',        '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-    buf_set_keymap('n', 'gk',        '<cmd>lua vim.lsp.buf.code_action()<CR>')
-    buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
-    buf_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
+      buf_set_keymap('n', 'gd',        '<cmd>lua vim.lsp.buf.declaration()<CR>')
+      buf_set_keymap('n', 'gi',        '<cmd>lua vim.lsp.buf.implementation()<CR>')
+      buf_set_keymap('n', 'K',         '<cmd>lua vim.lsp.buf.hover()<CR>')
+      buf_set_keymap('n', '<C-k>',     '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+      buf_set_keymap('n', '1gD',       '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+      buf_set_keymap('n', 'gr',        '<cmd>lua vim.lsp.buf.references()<CR>')
+      buf_set_keymap('n', 'g0',        '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+      buf_set_keymap('n', 'gW',        '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+      buf_set_keymap('n', 'gk',        '<cmd>lua vim.lsp.buf.code_action()<CR>')
+      buf_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+      buf_set_keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<CR>')
 
-    if client.resolved_capabilities.document_formatting then
-      buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
-      vim.cmd('autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()')
+      if client.resolved_capabilities.document_formatting then
+        buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
+        buf_set_keymap("n", "gf",        "<cmd>lua require('plugins.lspconfig').toggle_format_on_save()<CR>")
+        require('plugins.lspconfig').set_format_on_save(true)
+      end
+
+      lsp_signature.on_attach({ hint_enable = false })
     end
 
-    require('lsp_signature').on_attach({ hint_enable = false })
-  end
+    local make_on_attach = function (server_on_attach)
+      return function (client, bufnr)
+        on_attach(client, bufnr)
 
-  local make_on_attach = function (server_on_attach)
-    return function (client, bufnr)
-      on_attach(client, bufnr)
-
-      if server_on_attach then
-        server_on_attach(client, bufnr)
+        if server_on_attach then
+          server_on_attach(client, bufnr)
+        end
       end
     end
-  end
 
-  local servers = {
-    require('plugins.lspconfig.rust-analyzer'),
-    require('plugins.lspconfig.sumneko_lua'),
-    require('plugins.lspconfig.pyright'),
-    require('plugins.lspconfig.texlab'),
-    { name = 'hls' },
-    { name = 'clangd' },
-    { name = 'cmake' },
-    { name = 'hls' },
-    { name = 'vuels' },
-    { name = 'tsserver' },
-    { name = 'bashls' },
-  }
-
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-      underline = true,
-      update_in_insert = false,
-      virtual_text = {
-        prefix = ''
-      },
+    local servers = {
+      require('plugins.lspconfig.rust-analyzer'),
+      require('plugins.lspconfig.sumneko_lua'),
+      require('plugins.lspconfig.pyright'),
+      require('plugins.lspconfig.texlab'),
+      { name = 'hls' },
+      { name = 'clangd' },
+      { name = 'cmake' },
+      { name = 'hls' },
+      { name = 'vuels' },
+      { name = 'tsserver' },
+      { name = 'bashls' },
     }
-  )
 
-  vim.lsp.handlers['textDocument/codeAction'] = require('lsputil.codeAction').code_action_handler
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-  vim.fn.sign_define('LspDiagnosticsSignError',
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = {
+          prefix = ''
+        },
+      }
+    )
+
+    vim.lsp.handlers['textDocument/codeAction'] = require('lsputil.codeAction').code_action_handler
+
+    vim.fn.sign_define('LspDiagnosticsSignError',
     { text = '', texthl = 'LspDiagnosticsSignError' })
-  vim.fn.sign_define('LspDiagnosticsSignWarning',
+    vim.fn.sign_define('LspDiagnosticsSignWarning',
     { text = '', texthl = 'LspDiagnosticsSignWarning' })
-  vim.fn.sign_define('LspDiagnosticsSignInformation',
+    vim.fn.sign_define('LspDiagnosticsSignInformation',
     { text = '', texthl = 'LspDiagnosticsSignInformation' })
-  vim.fn.sign_define('LspDiagnosticsSignHint',
+    vim.fn.sign_define('LspDiagnosticsSignHint',
     { text = '', texthl = 'LspDiagnosticsSignHint' })
 
-  for _, server in ipairs(servers) do
-    lsp[server.name].setup {
-      on_attach = make_on_attach(server.on_attach),
-      cmd = server.cmd,
-      settings = server.settings,
-      capabilities = capabilities
-    }
+    for _, server in ipairs(servers) do
+      lsp[server.name].setup {
+        on_attach = make_on_attach(server.on_attach),
+        cmd = server.cmd,
+        settings = server.settings,
+        capabilities = capabilities
+      }
+    end
+  end,
+
+  set_format_on_save = function (enabled)
+    format_on_save = enabled
+    local command = ''
+
+    if enabled then command = 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()\n' end
+    vim.cmd([[
+    augroup FormatOnSave
+    autocmd!
+    ]]
+    .. command .. 'augroup END'
+    )
+  end,
+
+  toggle_format_on_save = function ()
+    require('plugins.lspconfig').set_format_on_save(not format_on_save)
   end
-end
+}

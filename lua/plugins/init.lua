@@ -22,7 +22,7 @@ packer.startup({
 
     use {
       'neovim/nvim-lspconfig',
-      config = require('plugins.lspconfig'),
+      config = require('plugins.lspconfig').config,
       requires = {
         {
           'RishabhRD/nvim-lsputils',
