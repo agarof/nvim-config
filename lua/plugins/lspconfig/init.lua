@@ -7,6 +7,7 @@ return {
     local lsp_signature = require('lsp_signature')
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
     local on_attach = function (client, bufnr)
       local function buf_set_keymap(...) utils.buf_map(bufnr, ...) end
