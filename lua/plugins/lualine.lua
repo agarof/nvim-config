@@ -24,7 +24,7 @@ return function ()
 
   local diagnostics = {
     'diagnostics',
-    sources = { 'nvim_lsp' },
+    sources = { 'nvim_diagnostic' },
     color_error = '#F44747',
     color_warn = '#E0AF68',
     color_info = '#10B981',
