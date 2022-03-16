@@ -44,7 +44,6 @@ return {
     end
 
     local servers = {
-      require('plugins.lspconfig.rust-analyzer'),
       require('plugins.lspconfig.sumneko_lua'),
       require('plugins.lspconfig.pyright'),
       require('plugins.lspconfig.texlab'),
@@ -76,17 +75,20 @@ return {
     vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
     vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
-    for _, server in ipairs(servers) do
-      lsp[server.name].setup {
+    local function make_config(server)
+      return {
         on_attach = make_on_attach(server.on_attach),
         cmd = server.cmd,
         settings = server.settings,
         capabilities = capabilities
       }
     end
-  end,
 
+    for _, server in ipairs(servers) do
+      lsp[server.name].setup(make_config(server))
+    end
 
+    require('rust-tools').setup({ server = make_config(require('plugins.lspconfig.rust-analyzer')) })
   end,
 
   toggle_format_on_save = function ()
