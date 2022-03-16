@@ -27,7 +27,7 @@ return {
       if client.resolved_capabilities.document_formatting then
         buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>")
         buf_set_keymap("n", "gf",        "<cmd>lua require('plugins.lspconfig').toggle_format_on_save()<CR>")
-        require('plugins.lspconfig').set_format_on_save(true)
+        vim.cmd('autocmd BufWritePre * lua require("plugins.lspconfig").format_on_save()')
       end
 
       lsp_signature.on_attach({ hint_enable = false })
@@ -86,20 +86,16 @@ return {
     end
   end,
 
-  set_format_on_save = function (enabled)
-    format_on_save = enabled
-    local command = ''
 
-    if enabled then command = 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()\n' end
-    vim.cmd([[
-    augroup FormatOnSave
-    autocmd!
-    ]]
-    .. command .. 'augroup END'
-    )
   end,
 
   toggle_format_on_save = function ()
-    require('plugins.lspconfig').set_format_on_save(not format_on_save)
+    format_on_save = not format_on_save
+  end,
+
+  format_on_save = function ()
+    if format_on_save then
+      vim.lsp.buf.formatting_sync()
+    end
   end
 }
