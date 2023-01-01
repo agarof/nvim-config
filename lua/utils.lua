@@ -18,13 +18,14 @@ return {
     vim.api.nvim_buf_set_keymap(buffer, mode, keys, action, options)
   end,
 
-  highlight = function (group, color)
+  highlight = function(group, color)
+    local color = color or {}
     local command = 'hi ' .. group .. ' '
-      .. 'gui='   .. (color.style or 'None') .. ' '
-      .. 'guifg=' .. (color.fg    or 'None') .. ' '
-      .. 'guibg=' .. (color.bg    or 'None') .. ' '
-      .. 'guisp=' .. (color.sp    or 'None') .. ' '
+        .. 'gui=' .. (color.style or 'None') .. ' '
+        .. 'guifg=' .. (color.fg or 'None') .. ' '
+        .. 'guibg=' .. (color.bg or 'None') .. ' '
+        .. 'guisp=' .. (color.sp or 'None') .. ' '
 
     vim.cmd(command)
-  end
+  end,
 }
