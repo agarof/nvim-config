@@ -1,10 +1,10 @@
-return function ()
+return function()
   local cmp = require('cmp')
 
   cmp.setup {
     snippet = {
       expand = function(args)
-        vim.fn['vsnip#anonymous'](args.body)
+        require('luasnip').lsp_expand(args.body)
       end,
     },
 
@@ -13,12 +13,14 @@ return function ()
       ['<C-e>'] = cmp.mapping.close(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
       ['<Tab>'] = cmp.mapping.select_next_item(),
+      ['<Down>'] = cmp.mapping.select_next_item(),
       ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+      ['<Up>'] = cmp.mapping.select_prev_item(),
     },
 
     sources = {
       { name = 'nvim_lsp' },
-      { name = 'vsnip' },
+      { name = 'luasnip' },
       { name = 'path' },
       { name = 'buffer' },
     },

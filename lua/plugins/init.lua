@@ -57,14 +57,14 @@ packer.startup({
       'hrsh7th/nvim-cmp',
       requires = {
         'hrsh7th/cmp-path',
-        'hrsh7th/cmp-vsnip',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-nvim-lsp',
+        'saadparwaiz1/cmp_luasnip',
       },
       config = require('plugins.cmp'),
     }
 
-    use { 'hrsh7th/vim-vsnip', config = require('plugins.vsnip') }
+    use { 'L3MON4D3/LuaSnip', config = require('plugins.luasnip') }
 
     use { 'rhysd/git-messenger.vim', config = require('plugins.git-messenger') }
 
