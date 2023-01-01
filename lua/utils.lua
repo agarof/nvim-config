@@ -1,25 +1,20 @@
-local default_options = {
-  noremap = true,
-  silent = true
-}
-
 return {
-  map = function (mode, keys, action, opts)
-    local options = default_options
-    if opts then options = vim.tbl_extend('force', options, opts) end
+  make_map = function(default_opts)
+    local default_options = {
+      silent = true
+    }
 
-    vim.api.nvim_set_keymap(mode, keys, action, options)
+    default_opts = vim.tbl_extend('force', default_options, default_opts or {})
+
+    return function(mode, keys, action, opts)
+      opts = vim.tbl_extend('force', default_opts, opts or {})
+
+      vim.keymap.set(mode, keys, action, opts)
+    end
   end,
 
-  buf_map = function (buffer, mode, keys, action, opts)
-    local options = default_options
-    if opts then options = vim.tbl_extend('force', options, opts) end
-
-    vim.api.nvim_buf_set_keymap(buffer, mode, keys, action, options)
-  end,
-
-  highlight = function(group, color)
-    local color = color or {}
+  highlight = function(group, opt_color)
+    local color = opt_color or {}
     local command = 'hi ' .. group .. ' '
         .. 'gui=' .. (color.style or 'None') .. ' '
         .. 'guifg=' .. (color.fg or 'None') .. ' '

@@ -1,5 +1,5 @@
-return function ()
-  local map = require("utils").map
+return function()
+  local map = require("utils").make_map()
   local telescope = require('telescope')
   local actions = require('telescope.actions')
 

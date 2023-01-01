@@ -1,21 +1,26 @@
-local utils = require("utils")
+local map = require('utils').make_map()
 
 -- Set leader key
 vim.g.mapleader = ','
 
 -- Remap ; to :
-utils.map('n', ';', ':')
+map('n', ';', ':')
 
 -- hn to return to normal mode
-utils.map('i', 'hn', '<C-c>')
-utils.map('v', 'hn', '<C-c>')
+map('i', 'hn', '<C-c>')
+map('v', 'hn', '<C-c>')
 
 -- tab navigation
-utils.map('n', '<C-h>', ':tabprevious<CR>')
-utils.map('n', '<C-l>', ':tabnext<CR>')
-utils.map('n', '<C-t>', ':tabnew<CR>')
-utils.map('n', '<C-c>', ':tabclose<CR>')
+map('n', '<C-h>', ':tabprevious<CR>')
+map('n', '<C-l>', ':tabnext<CR>')
+map('n', '<C-t>', ':tabnew<CR>')
+map('n', '<C-c>', ':tabclose<CR>')
 
 -- Allow window movement from active terminal
-utils.map('t', '<C-w>', '<C-\\><C-n><C-w>')
-utils.map('t', 'hn', '<C-\\><C-n>')
+map('t', '<C-w>', '<C-\\><C-n><C-w>')
+map('t', 'hn', '<C-\\><C-n>')
+
+map('n', '<Up>', ':resize -1<CR>')
+map('n', '<Down>', ':resize +1<CR>')
+map('n', '<Left>', ':vertical resize -1<CR>')
+map('n', '<Right>', ':vertical resize +1<CR>')
