@@ -41,6 +41,9 @@ packer.startup({
       },
     }
 
+    -- File tree
+    use(require('plugins.neotree'))
+
     -- Treesitter
     use {
       {
