@@ -1,11 +1,11 @@
-local execute = vim.api.nvim_command
 local fn = vim.fn
-
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-
+local packer_bootstrap = false
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', '--depth', '1', install_path})
-  execute 'packadd packer.nvim'
+  fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
+  -- Check if clone was successful
+  packer_bootstrap = vim.v.shell_error == 0
 end
 
 local packer = require('packer')
@@ -93,10 +93,8 @@ packer.startup(
 
     use { 'folke/zen-mode.nvim', config = require('plugins.zen-mode') }
 
-  end,
-  config = {
-    display = {
-      open_fn = require('packer.util').float,
-    }
-  }
-})
+    if packer_bootstrap then
+      require('packer').sync()
+    end
+  end
+)
