@@ -101,6 +101,10 @@ packer.startup(
 
     use { 'folke/zen-mode.nvim', config = require('plugins.zen-mode') }
 
+    use { 'TimUntersberger/neogit', config = function()
+      require('neogit').setup {}
+    end }
+
     if packer_bootstrap then
       require('packer').sync()
     end
