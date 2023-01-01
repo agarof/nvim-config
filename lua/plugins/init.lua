@@ -93,13 +93,29 @@ packer.startup(
       config = require('plugins.lsp-trouble'),
     }
 
+    use { 'folke/zen-mode.nvim', config = require('plugins.zen-mode') }
 
-    -- Startup time benchmark
-    use 'tweekmonster/startuptime.vim'
+    use { 'folke/twilight.nvim', config = require('plugins.twilight') }
 
     use { 'windwp/nvim-autopairs', config = require('plugins.autopairs') }
 
-    use { 'folke/zen-mode.nvim', config = require('plugins.zen-mode') }
+    use { 'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end }
+
+    use { 'lewis6991/gitsigns.nvim', config = function() require('gitsigns').setup() end }
+
+    use {
+      'folke/noice.nvim',
+      config = function()
+        require('notify').setup({ background_colour = '#24283b' })
+        require('noice').setup()
+      end,
+      requires = {
+        'MunifTanjim/nui.nvim',
+        'rcarriga/nvim-notify',
+      },
+    }
+
+    use { 'stevearc/dressing.nvim', config = function() require('dressing').setup() end }
 
     use { 'TimUntersberger/neogit', config = function()
       require('neogit').setup {}
