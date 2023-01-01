@@ -20,6 +20,7 @@ return function()
   }
 
   telescope.load_extension('fzf')
+  telescope.load_extension('lsp_handlers')
 
   map('n', '<C-f>', ':Telescope find_files<CR>')
   map('n', '<C-g>', ':Telescope live_grep<CR>')

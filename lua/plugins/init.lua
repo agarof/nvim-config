@@ -66,9 +66,9 @@ packer.startup(
     use {
       'nvim-telescope/telescope.nvim',
       requires = {
-        { 'nvim-lua/popup.nvim' },
         { 'nvim-lua/plenary.nvim' },
         { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+        { 'gbrlsnchs/telescope-lsp-handlers.nvim' },
       },
       config = require('plugins.telescope')
     }
