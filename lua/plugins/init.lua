@@ -103,6 +103,10 @@ packer.startup(
 
     use { 'lewis6991/gitsigns.nvim', config = function() require('gitsigns').setup() end }
 
+    use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
+
+    use { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup() end }
+
     use {
       'folke/noice.nvim',
       config = function()
