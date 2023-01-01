@@ -45,8 +45,8 @@ return {
 
     local servers = {
       require('plugins.lspconfig.sumneko_lua'),
-      require('plugins.lspconfig.pyright'),
       require('plugins.lspconfig.texlab'),
+      { name = 'pyright' },
       { name = 'hls' },
       { name = 'clangd' },
       { name = 'cmake' },
