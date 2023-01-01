@@ -10,16 +10,8 @@ end
 
 local packer = require('packer')
 
-local treesitter_branch = '0.5-compat'
-
-local version = vim.version()
-if version.major == 0 and version.minor == 6 then
-    treesitter_branch = 'master'
-end
-
-
-packer.startup({
-  function (use)
+packer.startup(
+  function(use)
     use 'wbthomason/packer.nvim'
 
     -- Colorschemes
@@ -48,7 +40,6 @@ packer.startup({
     use {
       {
         'nvim-treesitter/nvim-treesitter',
-        branch = treesitter_branch,
         run = ':TSUpdate',
         config = require('plugins.treesitter'),
       },

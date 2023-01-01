@@ -1,4 +1,4 @@
-return function ()
+return function()
   require('nvim-treesitter.configs').setup {
     highlight = {
       enable = true,
@@ -23,6 +23,6 @@ return function ()
     }
   }
 
-  vim.wo.foldmethod = 'expr'
-  vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+  vim.o.foldmethod = 'expr'
+  vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 end
