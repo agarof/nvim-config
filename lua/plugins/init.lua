@@ -22,14 +22,23 @@ packer.startup(
 
     use {
       'neovim/nvim-lspconfig',
+      tag = "v0.1.4",
       config = require('plugins.lspconfig').config,
       requires = {
-        {
-          'RishabhRD/nvim-lsputils',
-          requires = 'RishabhRD/popfix',
-        },
-        'ray-x/lsp_signature.nvim',
         'simrat39/rust-tools.nvim',
+        'MunifTanjim/prettier.nvim',
+        {
+          'simrat39/symbols-outline.nvim',
+          config = function()
+            require('symbols-outline').setup()
+          end
+        },
+        {
+          "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+          config = function()
+            require("lsp_lines").setup()
+          end,
+        },
       },
     }
 
@@ -84,8 +93,6 @@ packer.startup(
       config = require('plugins.lsp-trouble'),
     }
 
-    -- Lsp diagnostics highlights
-    use 'folke/lsp-colors.nvim'
 
     -- Startup time benchmark
     use 'tweekmonster/startuptime.vim'
