@@ -95,7 +95,7 @@ packer.startup({
     -- Startup time benchmark
     use 'tweekmonster/startuptime.vim'
 
-    use { 'steelsojka/pears.nvim', config = require('plugins.pears') }
+    use { 'windwp/nvim-autopairs', config = require('plugins.autopairs') }
 
     use { 'folke/zen-mode.nvim', config = require('plugins.zen-mode') }
 
