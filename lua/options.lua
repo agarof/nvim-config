@@ -1,4 +1,4 @@
-local opt = vim.opt
+local opt = vim.o
 
 opt.foldlevelstart = 99
 
@@ -31,13 +31,10 @@ opt.expandtab = true
 opt.showmode = false
 
 -- Configure terminal
-vim.cmd([[
-augroup neovim_terminal
-  autocmd!
-  " Enter Terminal-mode (insert) automatically
-  autocmd TermOpen * startinsert
-  autocmd BufEnter term://* startinsert
-  " Disables number lines on terminal buffers
-  autocmd TermOpen * :set nonumber norelativenumber
-augroup END
-]])
+local termgroup = vim.api.nvim_create_augroup('neovim_terminal', { clear = true })
+vim.api.nvim_create_autocmd('TermOpen', { callback = function()
+  opt.number = false
+  opt.relativenumber = false
+end, group = termgroup })
+vim.api.nvim_create_autocmd('TermOpen', { command = 'startinsert', group = termgroup })
+vim.api.nvim_create_autocmd('BufEnter', { pattern = 'term://*', command = 'startinsert', group = termgroup })
