@@ -19,6 +19,13 @@ return {
           [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
         },
       },
+      format = {
+        defaultConfig = {
+          quote_style = 'single',
+          table_separator_style = 'comma',
+          trailing_table_separator = 'smart',
+        },
+      },
       -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
         enable = false,
