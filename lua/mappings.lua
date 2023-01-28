@@ -4,7 +4,7 @@ local map = require('utils').make_map()
 vim.g.mapleader = ','
 
 -- Remap ; to :
-map('n', ';', ':')
+map({ 'n', 'v' }, ';', ':')
 
 -- hn to return to normal mode
 map('i', 'hn', '<C-c>')
@@ -24,3 +24,5 @@ map('n', '<Up>', ':resize -1<CR>')
 map('n', '<Down>', ':resize +1<CR>')
 map('n', '<Left>', ':vertical resize -1<CR>')
 map('n', '<Right>', ':vertical resize +1<CR>')
+
+map('n', '<leader>d', vim.diagnostic.open_float)

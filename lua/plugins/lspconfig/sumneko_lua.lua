@@ -1,5 +1,4 @@
 return {
-  name = 'sumneko_lua',
   settings = {
     Lua = {
       runtime = {
@@ -30,7 +29,7 @@ return {
       telemetry = {
         enable = false,
       },
-    }
+    },
   },
-  cmd = { '/usr/bin/lua-language-server' }
+  cmd = { '/usr/bin/lua-language-server' },
 }

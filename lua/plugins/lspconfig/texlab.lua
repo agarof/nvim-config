@@ -1,5 +1,4 @@
 return {
-  name = 'texlab',
   settings = {
     texlab = {
       build = {

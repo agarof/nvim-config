@@ -33,11 +33,24 @@ opt.showmode = false
 -- Intro is broken by status line plugins
 opt.shortmess = opt.shortmess .. 'I'
 
+vim.o.termguicolors = true
+
+-- Setup diagnostics icons
+vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
+vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+
+-- Setup diagnostics virtual text
+vim.diagnostic.config({
+  virtual_text = { prefix = '' },
+})
+
 -- Configure terminal
 local termgroup = vim.api.nvim_create_augroup('neovim_terminal', { clear = true })
 vim.api.nvim_create_autocmd('TermOpen', { callback = function()
   opt.number = false
   opt.relativenumber = false
-end, group = termgroup })
+end, group = termgroup, })
 vim.api.nvim_create_autocmd('TermOpen', { command = 'startinsert', group = termgroup })
 vim.api.nvim_create_autocmd('BufEnter', { pattern = 'term://*', command = 'startinsert', group = termgroup })

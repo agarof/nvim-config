@@ -1,132 +1,23 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local packer_bootstrap = false
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path })
-  -- Check if clone was successful
-  packer_bootstrap = vim.v.shell_error == 0
-end
+local map = require('utils').make_lazy_map()
 
-local packer = require('packer')
+return {
+  -- Pin lazy.nvim version
+  { 'folke/lazy.nvim', version = require('lazy-manager').version },
 
-packer.startup(
-  function(use)
-    use 'wbthomason/packer.nvim'
+  -- Colorschemes
+  'folke/tokyonight.nvim',
 
-    -- Colorschemes
-    use 'folke/tokyonight.nvim'
+  { 'windwp/nvim-autopairs', event = 'InsertEnter', config = true },
 
-    -- StatusLine
-    use { 'hoob3rt/lualine.nvim', config = require('plugins.lualine') }
+  { 'lewis6991/gitsigns.nvim', event = 'VeryLazy', opts = { trouble = false } },
 
-    use {
-      'neovim/nvim-lspconfig',
-      tag = "v0.1.4",
-      config = require('plugins.lspconfig').config,
-      requires = {
-        'simrat39/rust-tools.nvim',
-        'MunifTanjim/prettier.nvim',
-        {
-          'simrat39/symbols-outline.nvim',
-          config = function()
-            require('symbols-outline').setup()
-          end
-        },
-        {
-          "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-          config = function()
-            require("lsp_lines").setup()
-          end,
-        },
-      },
-    }
+  { 'stevearc/dressing.nvim', event = 'VeryLazy', config = true },
 
-    -- File tree
-    use(require('plugins.neotree'))
+  { 'norcalli/nvim-colorizer.lua', event = 'VeryLazy', config = true },
 
-    -- Treesitter
-    use {
-      {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        config = require('plugins.treesitter'),
-      },
-      'nvim-treesitter/playground'
-    }
+  { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
 
-    -- Autocompletion
-    use {
-      'hrsh7th/nvim-cmp',
-      requires = {
-        'hrsh7th/cmp-calc',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-nvim-lsp',
-        'saadparwaiz1/cmp_luasnip',
-      },
-      config = require('plugins.cmp'),
-    }
+  { 'rhysd/git-messenger.vim', keys = { map('n', '<Leader>g', '<Plug>(git-messenger)') } },
 
-    use { 'L3MON4D3/LuaSnip', config = require('plugins.luasnip') }
-
-    use { 'rhysd/git-messenger.vim', config = require('plugins.git-messenger') }
-
-    -- Finder
-    use {
-      'nvim-telescope/telescope.nvim',
-      requires = {
-        { 'nvim-lua/plenary.nvim' },
-        { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-        { 'gbrlsnchs/telescope-lsp-handlers.nvim' },
-      },
-      config = require('plugins.telescope')
-    }
-
-    -- Icons
-    use 'kyazdani42/nvim-web-devicons'
-
-    -- Lsp Diagnostics window
-    use {
-      'folke/lsp-trouble.nvim',
-      requires = 'kyazdani42/nvim-web-devicons',
-      config = require('plugins.lsp-trouble'),
-    }
-
-    use { 'folke/zen-mode.nvim', config = require('plugins.zen-mode') }
-
-    use { 'folke/twilight.nvim', config = require('plugins.twilight') }
-
-    use { 'windwp/nvim-autopairs', config = require('plugins.autopairs') }
-
-    use { 'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end }
-
-    use { 'lewis6991/gitsigns.nvim', config = function() require('gitsigns').setup() end }
-
-    use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
-
-    use { 'kylechui/nvim-surround', config = function() require('nvim-surround').setup() end }
-
-    use {
-      'folke/noice.nvim',
-      config = function()
-        require('notify').setup({ background_colour = '#24283b' })
-        require('noice').setup()
-      end,
-      requires = {
-        'MunifTanjim/nui.nvim',
-        'rcarriga/nvim-notify',
-      },
-    }
-
-    use { 'stevearc/dressing.nvim', config = function() require('dressing').setup() end }
-
-    use { 'TimUntersberger/neogit', config = function()
-      require('neogit').setup {}
-    end }
-
-    if packer_bootstrap then
-      require('packer').sync()
-    end
-  end
-)
+  { 'numToStr/Comment.nvim', event = 'VeryLazy', config = true },
+}

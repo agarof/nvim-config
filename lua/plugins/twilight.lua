@@ -1,5 +1,9 @@
-return function()
-  local map = require('utils').make_map()
+local map = require('utils').make_lazy_map()
 
-  map('n', 'zt', ':Twilight<CR>')
-end
+return {
+  'folke/twilight.nvim',
+  cmd = { 'Twilight', 'TwilightEnable', 'TwilightDisable' },
+  keys = {
+    map('n', 'zt', ':Twilight<CR>'),
+  }
+}

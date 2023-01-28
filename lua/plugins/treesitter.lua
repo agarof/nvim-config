@@ -1,28 +1,37 @@
-return function()
-  require('nvim-treesitter.configs').setup {
-    highlight = {
-      enable = true,
-    },
-    playground = {
-      enable = true,
-      disable = {},
-      updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-      persist_queries = false, -- Whether the query persists across vim sessions
-      keybindings = {
-        toggle_query_editor = 'o',
-        toggle_hl_groups = 'i',
-        toggle_injected_languages = 't',
-        toggle_anonymous_nodes = 'a',
-        toggle_language_display = 'I',
-        focus_language = 'f',
-        unfocus_language = 'F',
-        update = 'R',
-        goto_node = '<cr>',
-        show_help = '?',
+local languages = require('languages').treesitter
+
+return {
+  'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
+  ft = languages.filetypes,
+  cmd = { 'TSInstall', 'TSInstallInfo', 'TSUninstall', 'TSUpdate' },
+  config = function()
+    require('nvim-treesitter.configs').setup {
+      ensure_installed = languages.parsers,
+      highlight = {
+        enable = true,
+      },
+      playground = {
+        enable = true,
+        disable = {},
+        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+        persist_queries = false, -- Whether the query persists across vim sessions
+        keybindings = {
+          toggle_query_editor = 'o',
+          toggle_hl_groups = 'i',
+          toggle_injected_languages = 't',
+          toggle_anonymous_nodes = 'a',
+          toggle_language_display = 'I',
+          focus_language = 'f',
+          unfocus_language = 'F',
+          update = 'R',
+          goto_node = '<cr>',
+          show_help = '?',
+        },
       },
     }
-  }
 
-  vim.o.foldmethod = 'expr'
-  vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-end
+    vim.o.foldmethod = 'expr'
+    vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+  end,
+}
