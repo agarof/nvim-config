@@ -30,6 +30,9 @@ opt.expandtab = true
 -- Disable duplicate mode display
 opt.showmode = false
 
+-- Intro is broken by status line plugins
+opt.shortmess = opt.shortmess .. 'I'
+
 -- Configure terminal
 local termgroup = vim.api.nvim_create_augroup('neovim_terminal', { clear = true })
 vim.api.nvim_create_autocmd('TermOpen', { callback = function()
