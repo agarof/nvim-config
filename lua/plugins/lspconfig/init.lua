@@ -7,11 +7,9 @@ local format_on_save = function()
 end
 
 local toggle_format_on_save = function()
-  local text = 'enabled'
-  if format_on_save_enabled then text = 'disabled' end
-  print('Format on save ' .. text)
-
   format_on_save_enabled = not format_on_save_enabled
+  local text = format_on_save_enabled and 'enabled' or 'disabled'
+  print('Format on save ' .. text)
 end
 
 local format_on_attach = function(client, bufnr)
