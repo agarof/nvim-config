@@ -12,6 +12,18 @@ local toggle_format_on_save = function()
   print('Format on save ' .. text)
 end
 
+local format_selection = function()
+  -- Go back to normal mode, updates '< and '>
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<esc>', true, false, true), 'x', true)
+
+  local range = {
+    start = vim.api.nvim_buf_get_mark(0, '<'),
+    ['end'] = vim.api.nvim_buf_get_mark(0, '>'),
+  }
+
+  vim.lsp.buf.format({ async = true, range = range })
+end
+
 local format_on_attach = function(client, bufnr)
   local buf_map = require('utils').make_map({ buffer = bufnr })
 
@@ -23,6 +35,10 @@ local format_on_attach = function(client, bufnr)
         pattern = '<buffer>',
         callback = format_on_save,
       })
+  end
+
+  if client.server_capabilities.documentRangeFormattingProvider then
+    buf_map('v', '<leader>f', format_selection)
   end
 end
 
