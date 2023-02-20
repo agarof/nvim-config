@@ -1,8 +1,7 @@
-local version = '9.5.0'
+local version = '9.8.5'
 
 return {
   version = version,
-
   setup = function()
     local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
     if not vim.loop.fs_stat(lazypath) then
@@ -18,7 +17,7 @@ return {
     vim.opt.rtp:prepend(lazypath)
 
     require('lazy').setup('plugins', {
-      install = { colorscheme = { 'tokyonight', 'habamax' } }
+      install = { colorscheme = { 'tokyonight', 'habamax' } },
     })
-  end
+  end,
 }
