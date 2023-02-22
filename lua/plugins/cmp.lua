@@ -30,8 +30,8 @@ return {
       },
 
       sources = {
-        { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'nvim_lsp' },
         { name = 'path' },
         { name = 'buffer', option = { keyword_pattern = [[\K\k*]] } },
         { name = 'calc' },
@@ -42,5 +42,5 @@ return {
     vim.opt.completeopt = { 'menuone', 'noselect' }
     -- Remove cmp status display
     vim.opt.shortmess:append('c')
-  end
+  end,
 }
