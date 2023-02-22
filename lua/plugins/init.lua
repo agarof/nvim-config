@@ -9,15 +9,13 @@ return {
 
   { 'windwp/nvim-autopairs', event = 'InsertEnter', config = true },
 
-  { 'lewis6991/gitsigns.nvim', event = 'VeryLazy', opts = { trouble = false } },
-
   { 'stevearc/dressing.nvim', event = 'VeryLazy', config = true },
 
   { 'norcalli/nvim-colorizer.lua', event = 'VeryLazy', config = true },
 
   { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
 
-  { 'rhysd/git-messenger.vim', keys = { map('n', '<Leader>g', '<Plug>(git-messenger)') } },
+  { 'rhysd/git-messenger.vim', keys = { map('n', '<Leader>b', '<Plug>(git-messenger)') } },
 
   { 'numToStr/Comment.nvim', event = 'VeryLazy', config = true },
 }
