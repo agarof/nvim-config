@@ -37,19 +37,6 @@ return {
     end
   end,
 
-  ---@param group string
-  ---@param opt_color { style: string?, fg: string?, bg: string?, sp: string? }?
-  highlight = function(group, opt_color)
-    local color = opt_color or {}
-    local command = 'hi ' .. group .. ' '
-        .. 'gui=' .. (color.style or 'None') .. ' '
-        .. 'guifg=' .. (color.fg or 'None') .. ' '
-        .. 'guibg=' .. (color.bg or 'None') .. ' '
-        .. 'guisp=' .. (color.sp or 'None') .. ' '
-
-    vim.cmd(command)
-  end,
-
   ---@generic KEY
   ---@param t { [KEY]: any }
   ---@return KEY[]
