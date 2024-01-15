@@ -9,7 +9,7 @@ return {
 
   { 'windwp/nvim-autopairs', event = 'InsertEnter', config = true },
 
-  { 'stevearc/dressing.nvim', event = 'VeryLazy', config = true },
+  { 'stevearc/dressing.nvim', event = 'VeryLazy', config = true, enabled = false },
 
   { 'norcalli/nvim-colorizer.lua', event = 'VeryLazy', config = true },
 
