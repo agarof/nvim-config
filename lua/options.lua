@@ -33,7 +33,10 @@ opt.showmode = false
 -- Intro is broken by status line plugins
 opt.shortmess = opt.shortmess .. 'I'
 
-vim.o.termguicolors = true
+opt.termguicolors = true
+
+-- Enable exrc files
+opt.exrc = true
 
 -- Setup diagnostics icons
 vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
@@ -48,9 +51,13 @@ vim.diagnostic.config({
 
 -- Configure terminal
 local termgroup = vim.api.nvim_create_augroup('neovim_terminal', { clear = true })
-vim.api.nvim_create_autocmd('TermOpen', { callback = function()
-  opt.number = false
-  opt.relativenumber = false
-end, group = termgroup, })
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function()
+    opt.number = false
+    opt.relativenumber = false
+  end,
+  group = termgroup,
+})
 vim.api.nvim_create_autocmd('TermOpen', { command = 'startinsert', group = termgroup })
-vim.api.nvim_create_autocmd('BufEnter', { pattern = 'term://*', command = 'startinsert', group = termgroup })
+vim.api.nvim_create_autocmd('BufEnter',
+  { pattern = 'term://*', command = 'startinsert', group = termgroup })
