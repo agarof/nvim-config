@@ -66,6 +66,8 @@ return {
       buf_map('n', 'gk', lspbuf.code_action)
       buf_map('n', '<leader>r', lspbuf.rename)
 
+      client.server_capabilities.semanticTokensProvider = nil
+
       format_on_attach(client, bufnr)
     end
 
