@@ -22,6 +22,7 @@ return {
     map('n', '<Leader>gu', function() require('gitsigns').undo_stage_hunk() end),
     map('n', '<Leader>gn', function() require('gitsigns').next_hunk() end),
     map('n', '<Leader>gp', function() require('gitsigns').prev_hunk() end),
+    map('n', '<Leader>gd', function() require('gitsigns').preview_hunk_inline() end),
   },
   opts = {
     preview_config = {
