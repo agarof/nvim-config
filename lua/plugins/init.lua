@@ -17,5 +17,12 @@ return {
 
   { 'rhysd/git-messenger.vim', keys = { map('n', '<Leader>b', '<Plug>(git-messenger)') } },
 
-  { 'numToStr/Comment.nvim', event = 'VeryLazy', config = true },
+  {
+    'numToStr/Comment.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('Comment').setup()
+      require('Comment.ft').set('asm', '//%s')
+    end,
+  },
 }
