@@ -2,11 +2,12 @@ local map = require('utils').make_lazy_map()
 
 return {
   'nvim-telescope/telescope.nvim',
-  version = '0.1.1',
+  version = '0.1',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    'nvim-tree/nvim-web-devicons',
     'gbrlsnchs/telescope-lsp-handlers.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   cmd = 'Telescope',
   keys = {
@@ -23,8 +24,8 @@ return {
         mappings = {
           n = {
             ['q'] = actions.close,
-          }
-        }
+          },
+        },
       },
       extensions = {
         fzf = {
@@ -36,5 +37,5 @@ return {
 
     telescope.load_extension('fzf')
     telescope.load_extension('lsp_handlers')
-  end
+  end,
 }
