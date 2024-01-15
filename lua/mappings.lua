@@ -13,6 +13,8 @@ map('v', 'hn', '<C-c>')
 -- tab navigation
 map('n', '<C-h>', ':tabprevious<CR>')
 map('n', '<C-l>', ':tabnext<CR>')
+map('n', '<C-S-H>', ':tabmove -1<CR>')
+map('n', '<C-S-L>', ':tabmove +1<CR>')
 map('n', '<C-t>', ':tabnew<CR>')
 map('n', '<C-c>', ':tabclose<CR>')
 
