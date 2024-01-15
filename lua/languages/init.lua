@@ -3,12 +3,14 @@
 
 ---@type { [string]: Language }
 local languages = {
-  lua = { treesitter = true, lsp = 'sumneko_lua' },
+  lua = { treesitter = true, lsp = 'lua_ls' },
   rust = { treesitter = true, lsp = 'rust_analyzer' },
   c = { treesitter = true, lsp = 'clangd' },
   cpp = { treesitter = true, lsp = 'clangd' },
   python = { treesitter = true, lsp = 'pyright' },
   go = { treesitter = true, lsp = 'gopls' },
+
+  latex = { treesitter = true, lsp = 'texlab', extra_fts = { 'tex' } },
 
   -- Treesitter query syntax
   query = { treesitter = true },
@@ -16,6 +18,9 @@ local languages = {
   json = { treesitter = true },
   nix = { treesitter = true, lsp = 'rnix' },
   markdown = { treesitter = { 'markdown', 'markdown_inline' } },
+  proto = { treesitter = true },
+  sql = { treesitter = true },
+  help = { treesitter = 'vimdoc' },
 }
 
 local insert_one_or_many = require('utils').insert_one_or_many
