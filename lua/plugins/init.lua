@@ -5,7 +5,7 @@ return {
   { 'folke/lazy.nvim', version = require('lazy-manager').version },
 
   -- Colorschemes
-  'folke/tokyonight.nvim',
+  { 'folke/tokyonight.nvim', version = '2' },
 
   { 'windwp/nvim-autopairs', event = 'InsertEnter', config = true },
 
