@@ -44,7 +44,7 @@ end
 
 return {
   'neovim/nvim-lspconfig',
-  version = '0.1.4',
+  version = '0.1',
   ft = require('languages').lsp.filetypes,
   config = function()
     local lsp = require('lspconfig')
@@ -85,7 +85,7 @@ return {
     end
 
     local servers = {
-      sumneko_lua = require('plugins.lspconfig.sumneko_lua'),
+      lua_ls = require('plugins.lspconfig.lua_ls'),
       texlab = require('plugins.lspconfig.texlab'),
       rust_analyzer = require('plugins.lspconfig.rust-analyzer'),
       pyright = {},
