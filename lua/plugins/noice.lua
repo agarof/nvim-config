@@ -1,6 +1,6 @@
 return {
   'folke/noice.nvim',
-  version = '1',
+  version = '4',
   requires = {
     'MunifTanjim/nui.nvim',
     -- OPTIONAL:

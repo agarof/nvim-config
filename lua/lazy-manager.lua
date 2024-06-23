@@ -1,4 +1,4 @@
-local version = '10.15.1'
+local version = '10.24.3'
 
 return {
   version = version,
