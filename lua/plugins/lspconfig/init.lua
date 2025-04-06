@@ -48,8 +48,7 @@ return {
   ft = require('languages').lsp.filetypes,
   config = function()
     local lsp = require('lspconfig')
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+    local capabilities = require('blink.cmp').get_lsp_capabilities()
 
     local on_attach = function(client, bufnr)
       local buf_map = require('utils').make_map({ buffer = bufnr })
