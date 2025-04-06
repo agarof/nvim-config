@@ -2,7 +2,7 @@ local map = require('utils').make_lazy_map()
 
 local window_picker = {
   's1n7ax/nvim-window-picker',
-  version = '1.5',
+  version = '2.4',
   opts = {
     selection_chars = 'AOUIHTNS',
     filter_rules = {
@@ -18,7 +18,7 @@ local window_picker = {
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  version = '2',
+  version = '3',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended

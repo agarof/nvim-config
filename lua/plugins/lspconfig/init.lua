@@ -44,7 +44,7 @@ end
 
 return {
   'neovim/nvim-lspconfig',
-  version = '0.1',
+  version = '1',
   ft = require('languages').lsp.filetypes,
   config = function()
     local lsp = require('lspconfig')
@@ -65,8 +65,6 @@ return {
       buf_map('n', 'gW', lspbuf.workspace_symbol)
       buf_map('n', 'gk', lspbuf.code_action)
       buf_map('n', '<leader>r', lspbuf.rename)
-
-      client.server_capabilities.semanticTokensProvider = nil
 
       format_on_attach(client, bufnr)
     end
@@ -90,20 +88,15 @@ return {
       lua_ls = require('plugins.lspconfig.lua_ls'),
       texlab = require('plugins.lspconfig.texlab'),
       rust_analyzer = require('plugins.lspconfig.rust-analyzer'),
-      pyright = {},
-      hls = {},
-      clangd = {},
       tsserver = { disable_formatting = false },
-      bashls = {},
-      svelte = {},
-      tailwindcss = {},
-      rnix = {},
-      gopls = {},
     }
 
     local function make_config(server)
       return {
         on_attach = make_on_attach(server.on_attach, server.disable_formatting),
+        on_init = function(client)
+          client.server_capabilities.semanticTokensProvider = nil
+        end,
         cmd = server.cmd,
         settings = server.settings,
         capabilities = capabilities,
@@ -111,7 +104,7 @@ return {
     end
 
     for _, server in ipairs(require('languages').lsp.servers) do
-      lsp[server].setup(make_config(servers[server]))
+      lsp[server].setup(make_config(servers[server] or {}))
     end
   end,
 }

@@ -38,15 +38,17 @@ opt.termguicolors = true
 -- Enable exrc files
 opt.exrc = true
 
--- Setup diagnostics icons
-vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
-
--- Setup diagnostics virtual text
+-- Setup diagnostics icons and virtual text
 vim.diagnostic.config({
   virtual_text = { prefix = '' },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
+    },
+  },
 })
 
 -- Configure terminal

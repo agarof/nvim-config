@@ -27,4 +27,11 @@ map('n', '<Down>', ':resize +1<CR>')
 map('n', '<Left>', ':vertical resize -1<CR>')
 map('n', '<Right>', ':vertical resize +1<CR>')
 
+map('n', 'gl', function()
+  lines_enabled = vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({
+    virtual_lines = not lines_enabled,
+    virtual_text = lines_enabled and { prefix = '' } or false,
+  })
+end)
 map('n', '<leader>d', vim.diagnostic.open_float)

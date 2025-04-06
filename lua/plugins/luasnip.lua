@@ -1,7 +1,7 @@
 return {
   'L3MON4D3/LuaSnip',
   event = 'InsertEnter',
-  version = '1.2',
+  version = '2',
   config = function()
     local config = {
       history = true,
@@ -21,6 +21,8 @@ return {
     map({ 'i', 's' }, '<C-j>', function() ls.change_choice(1) end)
     map({ 'i', 's' }, '<C-k>', function() ls.change_choice(-1) end)
 
-    require("luasnip.loaders.from_lua").lazy_load({ paths = vim.fn.stdpath('config') .. '/luasnippets' })
+    require('luasnip.loaders.from_lua').lazy_load({
+      paths = vim.fn.stdpath('config') .. '/luasnippets',
+    })
   end,
 }

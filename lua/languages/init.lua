@@ -17,10 +17,14 @@ local languages = {
 
   json = { treesitter = true },
   nix = { treesitter = true, lsp = 'rnix' },
-  markdown = { treesitter = { 'markdown', 'markdown_inline' } },
+  markdown = { treesitter = { 'markdown', 'markdown_inline' }, lsp = 'markdown_oxide' },
   proto = { treesitter = true },
   sql = { treesitter = true },
   help = { treesitter = 'vimdoc' },
+
+  svelte = { treesitter = { 'svelte', 'typescript', 'css' }, lsp = 'svelte' },
+  typescript = { treesitter = true, lsp = 'ts_ls' },
+  tailwindcss = { lsp = 'tailwindcss' },
 }
 
 local insert_one_or_many = require('utils').insert_one_or_many
